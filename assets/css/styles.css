@@ -1,0 +1,1340 @@
+/* Cores Definidas */
+:root {
+    --preto: #000000;
+    --branco: #FFFFFF;
+    --dourado: #D4AF37; /* Dourado */
+    --dourado-suave: #E5C36E; /* Dourado suave */
+    --bege: #F5F5DC; /* Bege suave */
+    --cinza-claro: #F0F0F0;
+    --cinza-escuro: #555555;
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding-top: 70px; /* Adicionado para evitar sobreposição */
+}
+
+/* Cabeçalho Fixo */
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: var(--branco);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Logo */
+.logo img {
+    height: 40px;
+    width: auto;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Menu Hambúrguer */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburguer {
+    width: 25px;
+    height: 2px;
+    background-color: var(--preto);
+    position: relative;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.hamburguer::before,
+.hamburguer::after {
+    content: '';
+    width: 25px;
+    height: 2px;
+    background-color: var(--preto);
+    position: absolute;
+    transition: transform 0.3s;
+}
+
+.hamburguer::before {
+    transform: translateY(-6px);
+}
+
+.hamburguer::after {
+    transform: translateY(6px);
+}
+
+.menu-toggle.ativo .hamburguer {
+    background-color: transparent;
+}
+
+.menu-toggle.ativo .hamburguer::before {
+    transform: rotate(45deg);
+}
+
+.menu-toggle.ativo .hamburguer::after {
+    transform: rotate(-45deg);
+}
+
+/* Menu de Navegação */
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: var(--cinza-escuro);
+    font-weight: 500;
+    font-size: 0.9rem; /* Tamanho menor para desktop */
+    position: relative;
+    padding: 8px 12px; /* Padding reduzido */
+    transition: all 0.3s ease;
+    display: block;
+}
+
+/* Efeito Fade no Background */
+.menu ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dourado-suave);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.menu ul li a:hover::before {
+    opacity: 1;
+}
+
+/* Barra Inferior com Saída Invertida */
+.menu ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--dourado);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.menu ul li a:hover::after {
+    transform: scaleX(1);
+}
+
+.menu ul li a:not(:hover)::after {
+    transform: scaleX(0);
+    transform-origin: right;
+}
+
+/* Submenu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown .submenu {
+    display: none; /* Submenu começa fechado */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--branco);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+/* Abre o submenu ao passar o mouse (desktop) */
+.dropdown:hover .submenu {
+    display: block;
+}
+
+/* Abre o submenu ao clicar (mobile) */
+.dropdown.active .submenu {
+    display: block;
+}
+
+.submenu li a {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+}
+
+/* Botão CTA */
+.botao-cta {
+    background-color: var(--dourado);
+    color: var(--preto);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.botao-cta:hover {
+    background-color: var(--dourado-suave);
+    transform: translateY(-3px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        background-color: var(--branco);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+    }
+
+    .menu.active {
+        right: 0;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .menu ul li a {
+        font-size: 1rem; /* Tamanho maior para mobile */
+        padding: 10px 15px; /* Padding maior para mobile */
+    }
+
+    .dropdown .submenu {
+        display: none; /* Submenu começa fechado em mobile */
+    }
+
+    .dropdown:hover .submenu {
+        display: none; /* Desativa o hover em mobile */
+    }
+
+    .dropdown.active .submenu {
+        display: block; /* Abre o submenu ao clicar */
+    }
+
+    .botao-cta {
+        display: none; /* Oculta o botão CTA em mobile */
+    }
+}
+
+/* Seção Hero */
+.hero {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9)), url('/assets/img/Feedbacks/Cliente04.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--preto);
+    padding: 0 3%;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    animation: moveBackground 20s infinite linear;
+    z-index: 1;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/assets/img/Feedbacks/Cliente03.jpg'); /* Textura de ruído */
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.hero-conteudo {
+    position: relative;
+    z-index: 3;
+}
+
+.hero-conteudo h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.hero-conteudo p {
+    font-size: 1rem;
+    color: var(--cinza-escuro);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.botao-hero {
+    background-color: var(--dourado); /* Cor de fundo padrão */
+    color: var(--preto); /* Cor do texto padrão */
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.botao-hero:hover {
+    background-color: var(--dourado-escuro); /* Cor de fundo mais escura no hover */
+    color: var(--preto); /* Mantém o texto preto no hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.botao-hero:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.botao-hero.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.botao-hero.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid var(--preto);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.animated-eye {
+    animation: blink 2s infinite;
+}
+
+.scroll-indicator {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-indicator span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    animation: moveUpDown 2s infinite;
+}
+
+.scroll-indicator i {
+    font-size: 14px;
+}
+
+@keyframes moveBackground {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes moveUpDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Seção Sobre Mim */
+.sobre-mim {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--bege), var(--branco));
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.sobre-mim.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Conteúdo da Seção */
+.sobre-conteudo {
+    max-width: 100%;
+    text-align: center; /* Alinhamento à esquerda */
+}
+
+.sobre-conteudo h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--preto);
+    line-height: 1.3;
+}
+
+.sobre-conteudo h2 span {
+    color: var(--dourado);
+}
+
+.sobre-conteudo p {
+    font-size: 1rem;
+    color: var(--cinza-escuro);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* Timeline à Esquerda */
+.timeline {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px; /* Linha no lado esquerdo */
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background-color: var(--dourado);
+}
+
+.timeline-item {
+    position: relative;
+    width: 100%;
+    padding-left: 40px; /* Espaço para a linha e o marcador */
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 15px;
+    height: 15px;
+    background-color: var(--dourado);
+    border-radius: 50%;
+    z-index: 1;
+    transform: translateX(-50%); /* Centraliza a bolinha na linha */
+    left: 15px; /* Posiciona a bolinha sobre a linha */
+}
+
+.timeline-content {
+    padding: 15px;
+    background: var(--branco);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    width: 100%;
+}
+
+.timeline-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--preto);
+}
+
+.timeline-content p {
+    font-size: 0.9rem;
+    color: var(--cinza-escuro);
+    line-height: 1.6;
+}
+
+.timeline-details {
+    display: none;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: var(--cinza-escuro);
+}
+
+.timeline-item.active .timeline-details {
+    display: block;
+}
+
+/* Imagem */
+.sobre-imagem {
+    max-width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.sobre-imagem img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.sobre-imagem:hover img {
+    transform: scale(1.05);
+}
+
+/* Seção Serviços */
+.servicos {
+    padding: 80px 5%;
+    background-color: var(--bege);
+    text-align: center;
+}
+
+.servicos h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--preto);
+    animation: fadeIn 1.5s ease-in-out;
+    position: relative; /* Para o sublinhado */
+    display: inline-block; /* Para o sublinhado */
+}
+
+.servicos h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px; /* Posiciona o sublinhado abaixo do texto */
+    width: 100%;
+    height: 3px;
+    background-color: var(--dourado); /* Cor do sublinhado */
+    transform: scaleX(0); /* Inicia sem sublinhado */
+    transform-origin: left;
+    transition: transform 0.5s ease; /* Animação do sublinhado */
+}
+
+.servicos h2:hover::after {
+    transform: scaleX(1); /* Exibe o sublinhado ao passar o mouse */
+}
+
+.servicos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.servico-card {
+    background: var(--branco);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.servico-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--preto);
+    font-family: 'Playfair Display', serif;
+}
+
+.card-content h3 i {
+    margin-right: 10px;
+    color: var(--dourado);
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: var(--cinza-escuro);
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+
+.botao-servico {
+    background-color: transparent;
+    color: var(--dourado);
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 1px solid var(--dourado);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+}
+
+.botao-servico:hover {
+    background-color: var(--dourado);
+    color: var(--branco);
+}
+
+.card-details {
+    padding: 20px;
+    background: var(--branco);
+    max-height: 0; /* Inicia com altura zero */
+    opacity: 0; /* Inicia invisível */
+    overflow: hidden; /* Esconde o conteúdo que excede a altura */
+    transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease; /* Transição suave */
+}
+
+.card-details.active {
+    max-height: 500px; /* Altura máxima para exibir o conteúdo */
+    opacity: 1; /* Torna o conteúdo visível */
+    padding: 20px; /* Mantém o padding */
+}
+
+
+.card-details h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--preto);
+    font-family: 'Playfair Display', serif;
+}
+
+.card-details ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.card-details ul li {
+    font-size: 0.9rem;
+    color: var(--cinza-escuro);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Estilos dos Ícones */
+.card-details ul li i {
+    color: var(--dourado);
+    margin-right: 10px;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.card-details ul li:hover i {
+    transform: scale(1.2); /* Efeito de escala ao passar o mouse */
+}
+
+/* Estilos dos Tópicos */
+.card-details ul li {
+    font-size: 0.9rem;
+    color: var(--cinza-escuro);
+    margin-bottom: 10px;
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(212, 175, 55, 0.1); /* Fundo sutil para os tópicos */
+    transition: background 0.3s ease;
+}
+
+.card-details ul li:hover {
+    background: rgba(212, 175, 55, 0.2); /* Fundo mais destacado ao passar o mouse */
+}
+
+/* Botão de Agendamento */
+.link-contato {
+    background-color: var(--dourado); /* Cor de fundo padrão */
+    color: var(--preto); /* Cor do texto padrão */
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    display: inline-block;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+
+.link-contato:hover {
+    background-color: var(--dourado-escuro); /* Cor de fundo mais escura no hover */
+    color: var(--preto); /* Mantém o texto preto no hover */
+    transform: translateY(-3px); /* Efeito de elevação */
+}
+
+.link-contato {
+    color: var(--dourado);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid var(--dourado);
+    transition: color 0.3s, border-color 0.3s;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.link-contato:hover {
+    color: var(--preto);
+    border-bottom-color: var(--preto);
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Seção Portfólio */
+.portfolio {
+    padding: 80px 5%;
+    background: linear-gradient(300deg, rgb(19, 17, 4), var(--preto));
+    background-attachment: fixed;
+    text-align: center;
+}
+
+.portfolio h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: var(--dourado);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.portfolio h2 span {
+    color: var(--branco);
+}
+
+.portfolio-filters {
+    margin-bottom: 30px;
+}
+
+.filter-button {
+    background-color: transparent;
+    color: var(--branco);
+    padding: 10px 20px;
+    border: 1px solid var(--dourado);
+    border-radius: 25px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.filter-button.active {
+    background-color: var(--dourado);
+    color: var(--preto);
+    transform: translateY(-3px);
+}
+
+.filter-button:hover {
+    background-color: var(--dourado);
+    color: var(--preto);
+    transform: translateY(-3px);
+}
+
+.portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    aspect-ratio: 1 / 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.1);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(218, 165, 32, 0.3));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.portfolio-overlay p {
+    color: var(--branco);
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.botao-portfolio {
+    background-color: var(--dourado-suave);
+    color: var(--preto);
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 30px;
+    display: inline-block;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.botao-portfolio:hover {
+    background-color: var(--dourado);
+    transform: translateY(-3px);
+}
+
+.botao-portfolio i {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.botao-portfolio:hover i {
+    transform: rotate(360deg);
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Seção Depoimentos */
+.secao-feedbacks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vw;
+}
+
+.swiper.mySwiper {
+    padding: 50px 5% 100px 5%;
+    background: linear-gradient(135deg, var(--bege), #f5f5f5);
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.secao-feedbacks h2 {
+    animation: fadeIn 1.5s ease-in-out;
+    margin-bottom: 30px; /* Espaçamento abaixo do título */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.feedback-container {
+    background: linear-gradient(135deg, var(--branco), #f9f9f9);
+    border: 1px solid var(--dourado);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    max-width: 600px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    opacity: 0.5;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.swiper-slide-active .feedback-container {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.profile-photo {
+    width: 100%;
+    max-width: 140px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 0.4 / 0.5;
+    transition: transform 0.3s ease;
+}
+
+.profile-photo:hover {
+    transform: scale(1.1);
+}
+
+.client-name {
+    font-size: 0.9rem;
+    color: var(--preto);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.feedback-content {
+    font-size: 0.8rem;
+    color: var(--cinza-escuro);
+    line-height: 1.6;
+}
+
+.fa-quote-left,
+.fa-quote-right {
+    color: var(--dourado);
+    filter: drop-shadow(0 0 5px rgba(218, 165, 32, 0.5));
+}
+
+.swiper-pagination-bullet {
+    background-color: var(--cinza-claro);
+    opacity: 1;
+    margin: 0 5px; /* Espaçamento entre as bolinhas */
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--dourado); /* Cor da bolinha selecionada */
+}
+
+
+/* Seção de Agendamento */
+.agendamento {
+    background: var(--branco);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.agendamento h2 {
+    text-align: center;
+    color: var(--cinza-escuro);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.agendamento p {
+    text-align: center;
+    color: var(--cinza-escuro);
+    margin-bottom: 2rem;
+}
+
+/* Estilos do Formulário */
+#form-agendamento .form-group {
+    margin-bottom: 1.5rem;
+}
+
+#form-agendamento label {
+    display: block;
+    font-weight: bold;
+    color: var(--cinza-escuro);
+    margin-bottom: 0.5rem;
+}
+
+#form-agendamento input,
+#form-agendamento select,
+#form-agendamento button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--dourado);
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+#form-agendamento input:focus,
+#form-agendamento select:focus {
+    border-color: var(--dourado-suave);
+    outline: none;
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+}
+
+/* Botão de Agendar */
+#form-agendamento button {
+    background: var(--dourado);
+    color: var(--branco);
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+#form-agendamento button:hover {
+    background: var(--dourado-suave);
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos do Botão de Agendar */
+#btn-agendar {
+    position: relative;
+    background: var(--dourado);
+    color: var(--branco);
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+#btn-agendar:hover {
+    background: var(--dourado-suave);
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Texto do Botão */
+#btn-agendar .texto-btn {
+    display: inline-block;
+    transition: opacity 0.3s ease;
+    color: var(--branco);
+}
+
+
+
+/* Ícone de Carregamento */
+#btn-agendar .icone-carregando {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--branco);
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+
+/* Ícone de Sucesso (Checkmark) */
+#btn-agendar .icone-sucesso {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+#btn-agendar .icone-sucesso::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 20px;
+    border: solid var(--branco);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+    animation: aparecer 0.3s ease forwards;
+}
+
+/* Ícone de Erro (X) */
+#btn-agendar .icone-erro {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+#btn-agendar .icone-erro::before,
+#btn-agendar .icone-erro::after {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 3px;
+    background: var(--branco);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+}
+
+#btn-agendar .icone-erro::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+    animation: aparecer 0.3s ease forwards;
+}
+
+#btn-agendar .icone-erro::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+    animation: aparecer 0.3s ease forwards;
+}
+
+/* Estados do Botão */
+#btn-agendar.carregando .texto-btn {
+    opacity: 0;
+}
+
+#btn-agendar.carregando .icone-carregando {
+    display: block;
+}
+
+#btn-agendar.sucesso .texto-btn,
+#btn-agendar.erro .texto-btn {
+    opacity: 0;
+}
+
+#btn-agendar.sucesso .icone-sucesso {
+    display: block;
+}
+
+#btn-agendar.erro .icone-erro {
+    display: block;
+}
+
+/* Estados do Botão */
+#btn-agendar.carregando .texto-btn {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#btn-agendar.carregando .icone-carregando {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+#btn-agendar.sucesso .texto-btn,
+#btn-agendar.erro .texto-btn {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#btn-agendar.sucesso .icone-sucesso,
+#btn-agendar.erro .icone-erro {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Animações */
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes aparecer {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Rodapé */
+.rodape {
+    padding: 40px 5%;
+    background-color: var(--preto);
+    color: var(--branco);
+    text-align: center;
+    border-top: 1px solid var(--dourado); /* Linha sutil no topo */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+}
+
+.rodape-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.rodape-info p {
+    font-size: 0.9rem;
+    color: var(--cinza-claro);
+    margin: 0;
+}
+
+/* Links de navegação */
+.rodape-links ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.rodape-links ul li a {
+    text-decoration: none;
+    color: var(--branco);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.rodape-links ul li a:hover {
+    color: var(--dourado);
+    transform: translateY(-3px); /* Efeito de levitação */
+}
+
+/* Redes sociais */
+.rodape-redes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.rodape-redes a {
+    color: var(--branco);
+    font-size: 1.2rem;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.rodape-redes a:hover {
+    color: var(--dourado);
+    transform: scale(1.1); /* Efeito de escala */
+}
+
+/* Créditos */
+.rodape-creditos {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: var(--cinza-claro);
+}
+
+.rodape-creditos a {
+    color: var(--dourado);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.rodape-creditos a:hover {
+    color: var(--dourado-suave);
+}
+
+/* Animação de coração */
+.coracao {
+    display: inline-block;
+    animation: pulsar 1.5s infinite;
+}
+
+@keyframes pulsar {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
