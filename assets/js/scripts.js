@@ -297,3 +297,12 @@ function digitar() {
 digitar();
 
 
+
+
+// Barra Vertical RedesSociais
+const socialMenu = document.querySelector(".social-menu");
+const socialToggle = document.querySelector(".social-toggle");
+
+socialToggle.addEventListener("click", () => {
+    socialMenu.classList.toggle("active");
+});

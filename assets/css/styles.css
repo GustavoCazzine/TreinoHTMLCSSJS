@@ -1338,3 +1338,118 @@ body {
     50% { transform: scale(1.1); }
     100% { transform: scale(1); }
 }
+
+
+
+.social-menu {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    z-index: 1000;
+    max-width: 80px;
+    max-height: 80px;
+    background: transparent;
+}
+
+.social-toggle {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    background: var(--branco);
+    border: 2px solid var(--dourado); /* Borda dourada */
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--preto);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10; /* Botão principal acima dos itens */
+}
+
+.social-toggle:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+    border-color: var(--dourado-suave); /* Borda dourada suave no hover */
+}
+
+.social-toggle img {
+    transition: transform 0.5s ease; /* Adiciona transição para a rotação */
+}
+
+.social-menu.active .social-toggle img {
+    transform: rotate(360deg); /* Gira a imagem 360 graus */
+}
+
+.social-list {
+    list-style: none;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px; /* Espaçamento maior entre os itens */
+    transform: translateY(20px); /* Inicia os itens um pouco abaixo */
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    margin-bottom: 12px; /* Espaço entre o botão e os ícones */
+    z-index: 9; /* Itens abaixo do botão principal */
+    transform-origin: bottom center; /* Origem da animação no centro inferior */
+}
+
+.social-menu.active .social-list {
+    transform: translateY(0); /* Mostra os itens */
+    opacity: 1;
+    z-index: 11; /* Itens acima do botão principal quando visíveis */
+}
+
+.social-list li {
+    list-style: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: scale(0); /* Inicia os ícones invisíveis */
+    opacity: 0;
+    transition-delay: calc(0.1s * var(--i)); /* Atraso sequencial ao aparecer */
+}
+
+.social-menu.active .social-list li {
+    transform: scale(1); /* Mostra os ícones */
+    opacity: 1;
+    transition-delay: calc(0.1s * var(--i)); /* Ordem de cima para baixo */
+}
+
+.social-menu:not(.active) .social-list li {
+    transition-delay: calc(0.1s * (3 - var(--i))); /* Ordem de baixo para cima ao sumir */
+}
+
+.social-list li a {
+    position: relative;
+    display: flex;
+    width: 50px;
+    height: 50px;
+    background-color: var(--branco);
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: var(--clr);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent; /* Borda transparente por padrão */
+}
+
+.social-list li a img {
+    width: 24px; /* Tamanho reduzido */
+    height: 24px; /* Tamanho reduzido */
+    object-fit: contain; /* Garante que a imagem não fique distorcida */
+}
+
+.social-list li:hover a {
+    font-size: 1.75rem;
+    border-color: var(--clr); /* Borda com a cor da rede social */
+    box-shadow: 0 0 0 2px var(--clr), 0 0 0 6px var(--branco);
+    transform: scale(1.1);
+}
