@@ -1,12 +1,18 @@
 /* Cores Definidas */
 :root {
-    --preto: #000000;
-    --branco: #FFFFFF;
-    --dourado: #D4AF37; /* Dourado */
-    --dourado-suave: #E5C36E; /* Dourado suave */
-    --bege: #F5F5DC; /* Bege suave */
-    --cinza-claro: #F0F0F0;
-    --cinza-escuro: #555555;
+    --cor-preto: #000000;
+    --cor-branco: #FFFFFF;
+    --cor-dourado: #D4AF37;
+    --cor-dourado-suave: #E5C36E;
+    --cor-bege: #F5F5DC;
+    --cor-cinza-claro: #F0F0F0;
+    --cor-cinza-escuro: #555555;
+    
+    --fonte-primaria: Arial, sans-serif;
+    --tamanho-fonte-pequeno: 0.875rem;
+    --tamanho-fonte-medio: 1rem;
+    --tamanho-fonte-grande: 1.125rem;
+    --tamanho-fonte-titulo: 1.8rem;
 }
 
 /* Reset Básico */
@@ -17,7 +23,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: var(--fonte-primaria);
     padding-top: 70px; /* Adicionado para evitar sobreposição */
 }
 
@@ -27,7 +33,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 5%;
-    background-color: var(--branco);
+    background-color: var(--cor-branco);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
@@ -70,7 +76,7 @@ body {
 .hamburguer {
     width: 25px;
     height: 2px;
-    background-color: var(--preto);
+    background-color: var(--cor-preto);
     position: relative;
     transition: transform 0.3s, background-color 0.3s;
 }
@@ -80,7 +86,7 @@ body {
     content: '';
     width: 25px;
     height: 2px;
-    background-color: var(--preto);
+    background-color: var(--cor-preto);
     position: absolute;
     transition: transform 0.3s;
 }
@@ -130,9 +136,9 @@ body {
 
 .menu ul li a {
     text-decoration: none;
-    color: var(--cinza-escuro);
+    color: var(--cor-cinza-escuro);
     font-weight: 500;
-    font-size: 0.9rem; /* Tamanho menor para desktop */
+    font-size: var(--tamanho-fonte-pequeno); /* Tamanho menor para desktop */
     position: relative;
     padding: 8px 12px; /* Padding reduzido */
     transition: all 0.3s ease;
@@ -147,7 +153,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--dourado-suave);
+    background-color: var(--cor-dourado-suave);
     z-index: -1;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -165,7 +171,7 @@ body {
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: var(--dourado);
+    background-color: var(--cor-dourado);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s ease;
@@ -190,7 +196,7 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: var(--branco);
+    background-color: var(--cor-branco);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 10px;
     border-radius: 5px;
@@ -209,23 +215,23 @@ body {
 
 .submenu li a {
     padding: 8px 12px;
-    font-size: 0.9rem;
+    font-size: var(--tamanho-fonte-pequeno);
 }
 
 /* Botão CTA */
 .botao-cta {
-    background-color: var(--dourado);
-    color: var(--preto);
+    background-color: var(--cor-dourado);
+    color: var(--cor-preto);
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: var(--tamanho-fonte-medio);
     transition: background-color 0.3s, transform 0.3s;
 }
 
 .botao-cta:hover {
-    background-color: var(--dourado-suave);
+    background-color: var(--cor-dourado-suave);
     transform: translateY(-3px);
 }
 
@@ -241,7 +247,7 @@ body {
         right: -100%;
         height: 100vh;
         width: 70%;
-        background-color: var(--branco);
+        background-color: var(--cor-branco);
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -259,7 +265,7 @@ body {
     }
 
     .menu ul li a {
-        font-size: 1rem; /* Tamanho maior para mobile */
+        font-size: var(--tamanho-fonte-medio); /* Tamanho maior para mobile */
         padding: 10px 15px; /* Padding maior para mobile */
     }
 
@@ -290,7 +296,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: var(--preto);
+    color: var(--cor-preto);
     padding: 0 3%;
     position: relative;
     overflow: hidden;
@@ -327,27 +333,27 @@ body {
 }
 
 .hero-conteudo h1 {
-    font-size: 1.8rem;
+    font-size: var(--tamanho-fonte-titulo);
     margin-bottom: 10px;
     font-weight: 700;
     line-height: 1.3;
 }
 
 .hero-conteudo p {
-    font-size: 1rem;
-    color: var(--cinza-escuro);
+    font-size: var(--tamanho-fonte-medio);
+    color: var(--cor-cinza-escuro);
     margin-bottom: 20px;
     line-height: 1.6;
 }
 
 .botao-hero {
-    background-color: var(--dourado); /* Cor de fundo padrão */
-    color: var(--preto); /* Cor do texto padrão */
+    background-color: var(--cor-dourado); /* Cor de fundo padrão */
+    color: var(--cor-preto); /* Cor do texto padrão */
     padding: 12px 25px;
     border-radius: 30px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: var(--tamanho-fonte-medio);
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -356,8 +362,8 @@ body {
 }
 
 .botao-hero:hover {
-    background-color: var(--dourado-escuro); /* Cor de fundo mais escura no hover */
-    color: var(--preto); /* Mantém o texto preto no hover */
+    background-color: var(--cor-dourado-suave); /* Cor de fundo mais clara no hover */
+    color: var(--cor-preto); /* Mantém o texto preto no hover */
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
@@ -380,7 +386,7 @@ body {
     width: 20px;
     height: 20px;
     border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top: 2px solid var(--preto);
+    border-top: 2px solid var(--cor-preto);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -435,7 +441,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background: linear-gradient(135deg, var(--bege), var(--branco));
+    background: linear-gradient(135deg, var(--cor-bege), var(--cor-branco));
     gap: 20px;
     opacity: 0;
     transform: translateY(20px);
@@ -454,19 +460,19 @@ body {
 }
 
 .sobre-conteudo h2 {
-    font-size: 1.8rem;
+    font-size: var(--tamanho-fonte-titulo);
     margin-bottom: 15px;
-    color: var(--preto);
+    color: var(--cor-preto);
     line-height: 1.3;
 }
 
 .sobre-conteudo h2 span {
-    color: var(--dourado);
+    color: var(--cor-dourado);
 }
 
 .sobre-conteudo p {
-    font-size: 1rem;
-    color: var(--cinza-escuro);
+    font-size: var(--tamanho-fonte-medio);
+    color: var(--cor-cinza-escuro);
     margin-bottom: 20px;
     line-height: 1.6;
 }
@@ -486,7 +492,7 @@ body {
     top: 0;
     height: 100%;
     width: 2px;
-    background-color: var(--dourado);
+    background-color: var(--cor-dourado);
 }
 
 .timeline-item {
@@ -503,7 +509,7 @@ body {
     top: 0;
     width: 15px;
     height: 15px;
-    background-color: var(--dourado);
+    background-color: var(--cor-dourado);
     border-radius: 50%;
     z-index: 1;
     transform: translateX(-50%); /* Centraliza a bolinha na linha */
@@ -512,7 +518,7 @@ body {
 
 .timeline-content {
     padding: 15px;
-    background: var(--branco);
+    background: var(--cor-branco);
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
@@ -521,22 +527,22 @@ body {
 }
 
 .timeline-content h3 {
-    font-size: 1.2rem;
+    font-size: var(--tamanho-fonte-grande);
     margin-bottom: 10px;
-    color: var(--preto);
+    color: var(--cor-preto);
 }
 
 .timeline-content p {
-    font-size: 0.9rem;
-    color: var(--cinza-escuro);
+    font-size: var(--tamanho-fonte-pequeno);
+    color: var(--cor-cinza-escuro);
     line-height: 1.6;
 }
 
 .timeline-details {
     display: none;
     margin-top: 10px;
-    font-size: 0.9rem;
-    color: var(--cinza-escuro);
+    font-size: var(--tamanho-fonte-pequeno);
+    color: var(--cor-cinza-escuro);
 }
 
 .timeline-item.active .timeline-details {
@@ -566,14 +572,14 @@ body {
 /* Seção Serviços */
 .servicos {
     padding: 80px 5%;
-    background-color: var(--bege);
+    background-color: var(--cor-bege);
     text-align: center;
 }
 
 .servicos h2 {
     font-size: 2.5rem;
     margin-bottom: 40px;
-    color: var(--preto);
+    color: var(--cor-preto);
     animation: fadeIn 1.5s ease-in-out;
     position: relative; /* Para o sublinhado */
     display: inline-block; /* Para o sublinhado */
@@ -586,7 +592,7 @@ body {
     bottom: -10px; /* Posiciona o sublinhado abaixo do texto */
     width: 100%;
     height: 3px;
-    background-color: var(--dourado); /* Cor do sublinhado */
+    background-color: var(--cor-dourado); /* Cor do sublinhado */
     transform: scaleX(0); /* Inicia sem sublinhado */
     transform-origin: left;
     transition: transform 0.5s ease; /* Animação do sublinhado */
@@ -604,7 +610,7 @@ body {
 }
 
 .servico-card {
-    background: var(--branco);
+    background: var(--cor-branco);
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -631,18 +637,18 @@ body {
 .card-content h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
-    color: var(--preto);
+    color: var(--cor-preto);
     font-family: 'Playfair Display', serif;
 }
 
 .card-content h3 i {
     margin-right: 10px;
-    color: var(--dourado);
+    color: var(--cor-dourado);
 }
 
 .card-content p {
-    font-size: 1rem;
-    color: var(--cinza-escuro);
+    font-size: var(--tamanho-fonte-medio);
+    color: var(--cor-cinza-escuro);
     margin-bottom: 15px;
     line-height: 1.6;
     font-family: 'Poppins', sans-serif;
@@ -650,10 +656,10 @@ body {
 
 .botao-servico {
     background-color: transparent;
-    color: var(--dourado);
+    color: var(--cor-dourado);
     padding: 10px 20px;
     border-radius: 25px;
-    border: 1px solid var(--dourado);
+    border: 1px solid var(--cor-dourado);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
@@ -662,13 +668,13 @@ body {
 }
 
 .botao-servico:hover {
-    background-color: var(--dourado);
-    color: var(--branco);
+    background-color: var(--cor-dourado);
+    color: var(--cor-branco);
 }
 
 .card-details {
     padding: 20px;
-    background: var(--branco);
+    background: var(--cor-branco);
     max-height: 0; /* Inicia com altura zero */
     opacity: 0; /* Inicia invisível */
     overflow: hidden; /* Esconde o conteúdo que excede a altura */
@@ -681,11 +687,10 @@ body {
     padding: 20px; /* Mantém o padding */
 }
 
-
 .card-details h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
-    color: var(--preto);
+    color: var(--cor-preto);
     font-family: 'Playfair Display', serif;
 }
 
@@ -697,14 +702,14 @@ body {
 
 .card-details ul li {
     font-size: 0.9rem;
-    color: var(--cinza-escuro);
+    color: var(--cor-cinza-escuro);
     margin-bottom: 10px;
     line-height: 1.6;
 }
 
 /* Estilos dos Ícones */
 .card-details ul li i {
-    color: var(--dourado);
+    color: var(--cor-dourado);
     margin-right: 10px;
     font-size: 1.2rem;
     transition: transform 0.3s ease;
@@ -717,7 +722,7 @@ body {
 /* Estilos dos Tópicos */
 .card-details ul li {
     font-size: 0.9rem;
-    color: var(--cinza-escuro);
+    color: var(--cor-cinza-escuro);
     margin-bottom: 10px;
     line-height: 1.6;
     display: flex;
@@ -734,8 +739,8 @@ body {
 
 /* Botão de Agendamento */
 .link-contato {
-    background-color: var(--dourado); /* Cor de fundo padrão */
-    color: var(--preto); /* Cor do texto padrão */
+    background-color: var(--cor-dourado); /* Cor de fundo padrão */
+    color: var(--cor-preto); /* Cor do texto padrão */
     padding: 10px 20px;
     border-radius: 25px;
     text-decoration: none;
@@ -746,26 +751,25 @@ body {
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
 }
 
-
 .link-contato:hover {
-    background-color: var(--dourado-escuro); /* Cor de fundo mais escura no hover */
-    color: var(--preto); /* Mantém o texto preto no hover */
+    background-color: var(--cor-dourado-suave); /* Cor de fundo mais clara no hover */
+    color: var(--cor-preto); /* Mantém o texto preto no hover */
     transform: translateY(-3px); /* Efeito de elevação */
 }
 
 .link-contato {
-    color: var(--dourado);
+    color: var(--cor-dourado);
     text-decoration: none;
     font-weight: 600;
-    border-bottom: 1px solid var(--dourado);
+    border-bottom: 1px solid var(--cor-dourado);
     transition: color 0.3s, border-color 0.3s;
     margin-top: 15px;
     display: inline-block;
 }
 
 .link-contato:hover {
-    color: var(--preto);
-    border-bottom-color: var(--preto);
+    color: var(--cor-preto);
+    border-bottom-color: var(--cor-preto);
 }
 
 /* Animações */
@@ -774,11 +778,10 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-
 /* Seção Portfólio */
 .portfolio {
     padding: 80px 5%;
-    background: linear-gradient(300deg, rgb(19, 17, 4), var(--preto));
+    background: linear-gradient(300deg, rgb(19, 17, 4), var(--cor-preto));
     background-attachment: fixed;
     text-align: center;
 }
@@ -786,12 +789,12 @@ body {
 .portfolio h2 {
     font-size: 2.5rem;
     margin-bottom: 30px;
-    color: var(--dourado);
+    color: var(--cor-dourado);
     animation: fadeIn 1.5s ease-in-out;
 }
 
 .portfolio h2 span {
-    color: var(--branco);
+    color: var(--cor-branco);
 }
 
 .portfolio-filters {
@@ -800,9 +803,9 @@ body {
 
 .filter-button {
     background-color: transparent;
-    color: var(--branco);
+    color: var(--cor-branco);
     padding: 10px 20px;
-    border: 1px solid var(--dourado);
+    border: 1px solid var(--cor-dourado);
     border-radius: 25px;
     margin: 5px;
     cursor: pointer;
@@ -810,14 +813,14 @@ body {
 }
 
 .filter-button.active {
-    background-color: var(--dourado);
-    color: var(--preto);
+    background-color: var(--cor-dourado);
+    color: var(--cor-preto);
     transform: translateY(-3px);
 }
 
 .filter-button:hover {
-    background-color: var(--dourado);
-    color: var(--preto);
+    background-color: var(--cor-dourado);
+    color: var(--cor-preto);
     transform: translateY(-3px);
 }
 
@@ -873,8 +876,8 @@ body {
 }
 
 .portfolio-overlay p {
-    color: var(--branco);
-    font-size: 1rem;
+    color: var(--cor-branco);
+    font-size: var(--tamanho-fonte-medio);
     font-weight: 500;
     text-align: center;
     padding: 10px;
@@ -882,20 +885,20 @@ body {
 }
 
 .botao-portfolio {
-    background-color: var(--dourado-suave);
-    color: var(--preto);
+    background-color: var(--cor-dourado-suave);
+    color: var(--cor-preto);
     padding: 12px 24px;
     border-radius: 30px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: var(--tamanho-fonte-medio);
     margin-top: 30px;
     display: inline-block;
     transition: background-color 0.3s, transform 0.3s;
 }
 
 .botao-portfolio:hover {
-    background-color: var(--dourado);
+    background-color: var(--cor-dourado);
     transform: translateY(-3px);
 }
 
@@ -924,7 +927,7 @@ body {
 
 .swiper.mySwiper {
     padding: 50px 5% 100px 5%;
-    background: linear-gradient(135deg, var(--bege), #f5f5f5);
+    background: linear-gradient(135deg, var(--cor-bege), #f5f5f5);
     background-attachment: fixed;
     overflow: hidden;
 }
@@ -940,8 +943,8 @@ body {
 }
 
 .feedback-container {
-    background: linear-gradient(135deg, var(--branco), #f9f9f9);
-    border: 1px solid var(--dourado);
+    background: linear-gradient(135deg, var(--cor-branco), #f9f9f9);
+    border: 1px solid var(--cor-dourado);
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -977,38 +980,38 @@ body {
 }
 
 .client-name {
-    font-size: 0.9rem;
-    color: var(--preto);
+    font-size: var(--tamanho-fonte-pequeno);
+    color: var(--cor-preto);
     font-weight: 600;
     margin-bottom: 5px;
 }
 
 .feedback-content {
     font-size: 0.8rem;
-    color: var(--cinza-escuro);
+    color: var(--cor-cinza-escuro);
     line-height: 1.6;
 }
 
 .fa-quote-left,
 .fa-quote-right {
-    color: var(--dourado);
+    color: var(--cor-dourado);
     filter: drop-shadow(0 0 5px rgba(218, 165, 32, 0.5));
 }
 
 .swiper-pagination-bullet {
-    background-color: var(--cinza-claro);
+    background-color: var(--cor-cinza-claro);
     opacity: 1;
     margin: 0 5px; /* Espaçamento entre as bolinhas */
 }
 
 .swiper-pagination-bullet-active {
-    background-color: var(--dourado); /* Cor da bolinha selecionada */
+    background-color: var(--cor-dourado); /* Cor da bolinha selecionada */
 }
 
 
 /* Seção de Agendamento */
 .agendamento {
-    background: var(--branco);
+    background: var(--cor-branco);
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -1019,14 +1022,14 @@ body {
 
 .agendamento h2 {
     text-align: center;
-    color: var(--cinza-escuro);
+    color: var(--cor-cinza-escuro);
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
 }
 
 .agendamento p {
     text-align: center;
-    color: var(--cinza-escuro);
+    color: var(--cor-cinza-escuro);
     margin-bottom: 2rem;
 }
 
@@ -1038,7 +1041,7 @@ body {
 #form-agendamento label {
     display: block;
     font-weight: bold;
-    color: var(--cinza-escuro);
+    color: var(--cor-cinza-escuro);
     margin-bottom: 0.5rem;
 }
 
@@ -1047,7 +1050,7 @@ body {
 #form-agendamento button {
     width: 100%;
     padding: 10px;
-    border: 1px solid var(--dourado);
+    border: 1px solid var(--cor-dourado);
     border-radius: 5px;
     font-size: 16px;
     transition: all 0.3s ease;
@@ -1055,15 +1058,15 @@ body {
 
 #form-agendamento input:focus,
 #form-agendamento select:focus {
-    border-color: var(--dourado-suave);
+    border-color: var(--cor-dourado-suave);
     outline: none;
     box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
 }
 
 /* Botão de Agendar */
 #form-agendamento button {
-    background: var(--dourado);
-    color: var(--branco);
+    background: var(--cor-dourado);
+    color: var(--cor-branco);
     font-size: 16px;
     border: none;
     cursor: pointer;
@@ -1072,7 +1075,7 @@ body {
 }
 
 #form-agendamento button:hover {
-    background: var(--dourado-suave);
+    background: var(--cor-dourado-suave);
     transform: scale(1.05);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -1080,8 +1083,8 @@ body {
 /* Estilos do Botão de Agendar */
 #btn-agendar {
     position: relative;
-    background: var(--dourado);
-    color: var(--branco);
+    background: var(--cor-dourado);
+    color: var(--cor-branco);
     font-size: 16px;
     border: none;
     border-radius: 5px;
@@ -1093,7 +1096,7 @@ body {
 }
 
 #btn-agendar:hover {
-    background: var(--dourado-suave);
+    background: var(--cor-dourado-suave);
     transform: scale(1.05);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -1102,17 +1105,15 @@ body {
 #btn-agendar .texto-btn {
     display: inline-block;
     transition: opacity 0.3s ease;
-    color: var(--branco);
+    color: var(--cor-branco);
 }
-
-
 
 /* Ícone de Carregamento */
 #btn-agendar .icone-carregando {
     display: none;
     width: 20px;
     height: 20px;
-    border: 3px solid var(--branco);
+    border: 3px solid var(--cor-branco);
     border-top: 3px solid transparent;
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -1140,7 +1141,7 @@ body {
     display: block;
     width: 10px;
     height: 20px;
-    border: solid var(--branco);
+    border: solid var(--cor-branco);
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
     opacity: 0;
@@ -1165,7 +1166,7 @@ body {
     display: block;
     width: 20px;
     height: 3px;
-    background: var(--branco);
+    background: var(--cor-branco);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1204,31 +1205,6 @@ body {
     display: block;
 }
 
-/* Estados do Botão */
-#btn-agendar.carregando .texto-btn {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-#btn-agendar.carregando .icone-carregando {
-    display: block;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-#btn-agendar.sucesso .texto-btn,
-#btn-agendar.erro .texto-btn {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-#btn-agendar.sucesso .icone-sucesso,
-#btn-agendar.erro .icone-erro {
-    display: block;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
 /* Animações */
 @keyframes spin {
     0% { transform: translate(-50%, -50%) rotate(0deg); }
@@ -1243,14 +1219,13 @@ body {
 /* Rodapé */
 .rodape {
     padding: 40px 5%;
-    background-color: var(--preto);
-    color: var(--branco);
+    background-color: var(--cor-preto);
+    color: var(--cor-branco);
     text-align: center;
-    border-top: 1px solid var(--dourado); /* Linha sutil no topo */
+    border-top: 1px solid var(--cor-dourado); /* Linha sutil no topo */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-
 }
 
 .rodape-container {
@@ -1262,8 +1237,8 @@ body {
 }
 
 .rodape-info p {
-    font-size: 0.9rem;
-    color: var(--cinza-claro);
+    font-size: var(--tamanho-fonte-pequeno);
+    color: var(--cor-cinza-claro);
     margin: 0;
 }
 
@@ -1279,8 +1254,8 @@ body {
 
 .rodape-links ul li a {
     text-decoration: none;
-    color: var(--branco);
-    font-size: 0.9rem;
+    color: var(--cor-branco);
+    font-size: var(--tamanho-fonte-pequeno);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -1288,7 +1263,7 @@ body {
 }
 
 .rodape-links ul li a:hover {
-    color: var(--dourado);
+    color: var(--cor-dourado);
     transform: translateY(-3px); /* Efeito de levitação */
 }
 
@@ -1300,13 +1275,13 @@ body {
 }
 
 .rodape-redes a {
-    color: var(--branco);
+    color: var(--cor-branco);
     font-size: 1.2rem;
     transition: color 0.3s, transform 0.3s;
 }
 
 .rodape-redes a:hover {
-    color: var(--dourado);
+    color: var(--cor-dourado);
     transform: scale(1.1); /* Efeito de escala */
 }
 
@@ -1314,17 +1289,17 @@ body {
 .rodape-creditos {
     margin-top: 20px;
     font-size: 0.8rem;
-    color: var(--cinza-claro);
+    color: var(--cor-cinza-claro);
 }
 
 .rodape-creditos a {
-    color: var(--dourado);
+    color: var(--cor-dourado);
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .rodape-creditos a:hover {
-    color: var(--dourado-suave);
+    color: var(--cor-dourado-suave);
 }
 
 /* Animação de coração */
@@ -1338,8 +1313,6 @@ body {
     50% { transform: scale(1.1); }
     100% { transform: scale(1); }
 }
-
-
 
 .social-menu {
     position: fixed;
@@ -1358,14 +1331,14 @@ body {
     position: relative;
     height: 50px;
     width: 50px;
-    background: var(--branco);
-    border: 2px solid var(--dourado); /* Borda dourada */
+    background: var(--cor-branco);
+    border: 2px solid var(--cor-dourado); /* Borda dourada */
     border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--preto);
+    color: var(--cor-preto);
     font-size: 1.5rem;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -1375,7 +1348,7 @@ body {
 .social-toggle:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transform: scale(1.1);
-    border-color: var(--dourado-suave); /* Borda dourada suave no hover */
+    border-color: var(--cor-dourado-suave); /* Borda dourada suave no hover */
 }
 
 .social-toggle img {
@@ -1430,7 +1403,7 @@ body {
     display: flex;
     width: 50px;
     height: 50px;
-    background-color: var(--branco);
+    background-color: var(--cor-branco);
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -1450,6 +1423,6 @@ body {
 .social-list li:hover a {
     font-size: 1.75rem;
     border-color: var(--clr); /* Borda com a cor da rede social */
-    box-shadow: 0 0 0 2px var(--clr), 0 0 0 6px var(--branco);
+    box-shadow: 0 0 0 2px var(--clr), 0 0 0 6px var(--cor-branco);
     transform: scale(1.1);
 }
